@@ -37,19 +37,21 @@ int main(int argc, char *argv[]) {
   }
   shuffle(is.begin(), is.end(), engine);
 
+  cin >> buf;
   auto prev = 0ull;
-  for(auto i = 0ull; i < n_vs; i++) {
+  for(auto i = 0ull; i < n_vs - 1; i++) {
     cin >> buf;
     auto curr = stoul(buf);
     vs[i] = curr - prev;
     prev = curr;
   }
+  vs[n_vs - 1] = n_es - prev;
 
   cerr << "#vertices: " << n_vs << endl;
   cerr << "#edges: " << n_es << endl;
 
   cerr << "loading edges..." << endl;
-  
+
   for(auto i = 0ull; i < n_vs; i++) {
     for(auto j = 0ull; j < vs[i]; j++) {
       cin >> buf;
