@@ -26,19 +26,19 @@ int main(int argc, char *argv[]) {
   cin >> buf;
   auto n_es = stoull(buf);
 
-  vector<uint32_t> is(n_vs);
-  vector<uint32_t> vs(n_vs);
-  vector<vector<uint32_t>> es(n_vs, vector<uint32_t>());
+  vector<uint64_t> is(n_vs);
+  vector<uint64_t> vs(n_vs);
+  vector<vector<uint64_t>> es(n_vs, vector<uint64_t>());
 
   cerr << "loading vertices..." << endl;
 
-  for(auto i = 0; i < n_vs; i++) {
+  for(auto i = 0ull; i < n_vs; i++) {
     is[i] = i;
   }
   shuffle(is.begin(), is.end(), engine);
 
-  auto prev = 0;
-  for(auto i = 0; i < n_vs; i++) {
+  auto prev = 0ull;
+  for(auto i = 0ull; i < n_vs; i++) {
     cin >> buf;
     auto curr = stoul(buf);
     vs[i] = curr - prev;
@@ -50,8 +50,8 @@ int main(int argc, char *argv[]) {
 
   cerr << "loading edges..." << endl;
   
-  for(auto i = 0; i < n_vs; i++) {
-    for(auto j = 0; j < vs[i]; j++) {
+  for(auto i = 0ull; i < n_vs; i++) {
+    for(auto j = 0ull; j < vs[i]; j++) {
       cin >> buf;
       es[is[i]].emplace_back(is[stoul(buf)]);
     }
