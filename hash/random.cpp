@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 /*
  * argument list
  * 0:
@@ -75,16 +74,17 @@ int main(int argc, char *argv[]) {
 
   cerr << "storing..." << endl;
 
-  cout << "AdjacencyGraph" << endl;
-  cout << n_vs << endl;
-  cout << n_es << endl;
+  cout << "AdjacencyGraph\n";
+  cout << n_vs << "\n";
+  cout << n_es << "\n";
   for(auto v: vs) {
-    cout << v << endl;
+    cout << v << "\n";
   }
   for(auto e: es) {
     for(auto v: e) {
-      cout << v << endl;
+      cout << v << "\n";
     }
   }
+  cout << flush;
 }
 
