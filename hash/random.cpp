@@ -14,7 +14,8 @@ int main(int argc, char *argv[]) {
   cin.tie(0);
   ios::sync_with_stdio(false);
 
-  mt19937 engine(argc > 1 ? stoi(argv[1]) : 0);
+  auto seed = argc > 1 ? stoi(argv[1]) : 0;
+  mt19937 engine(seed);
   string buf;
 
   cerr << "loading headers..." << endl;
@@ -25,6 +26,7 @@ int main(int argc, char *argv[]) {
   cin >> buf;
   auto n_es = stoull(buf);
 
+  vector<uint64_t> _is(n_vs);
   vector<uint64_t> is(n_vs);
   vector<uint64_t> vs(n_vs);
   vector<vector<uint64_t>> es(n_vs, vector<uint64_t>());
@@ -32,9 +34,12 @@ int main(int argc, char *argv[]) {
   cerr << "loading vertices..." << endl;
 
   for(auto i = 0ull; i < n_vs; i++) {
-    is[i] = i;
+    _is[i] = i;
   }
-  shuffle(is.begin(), is.end(), engine);
+  engine.seed(seed); shuffle(_is.begin(), _is.end(), engine);
+  for(auto i = 0ull; i < n_vs; i++) {
+    is[_is[i]] = i;
+  }
 
   cin >> buf;
   auto prev = 0ull;
@@ -60,7 +65,7 @@ int main(int argc, char *argv[]) {
 
   cerr << "shuffling..." << endl;
 
-  shuffle(vs.begin(), vs.end(), engine);
+  engine.seed(seed); shuffle(vs.begin(), vs.end(), engine);
   prev = 0;
   for(auto &v: vs) {
     prev = v += prev;
