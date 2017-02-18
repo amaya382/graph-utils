@@ -83,8 +83,13 @@ int main(int argc, char *argv[]) {
   cout << "AdjacencyGraph\n";
   cout << n_vs << "\n";
   cout << n_es << "\n";
-  for(auto v: vs) {
-    cout << v << "\n";
+
+  {
+    vs.pop_back();
+    cout << 0 << "\n";
+    for(auto v: vs) {
+      cout << v << "\n";
+    }
   }
   for(auto e: es) {
     for(auto v: e) {
